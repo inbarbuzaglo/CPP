@@ -1,31 +1,10 @@
-#include <cstdlib>
-#include <cstdio>
-#include <string>
+
 #include <iostream>
-#include<fstream>
-#include<vector>
-#include <queue>
-#include<iomanip>
 #include <algorithm>
-
-using namespace std;
-
-// Includes header files for clarity.
 #include "Member.h"
 
 
-/**************************************************************************************************/
-
-//The Users class has two vectors of type Users* and a string variable which are used by the Graph class to create the directed Graph.
-
-//count how many activate members there are
-
-int Member::counter=0;
-
-int Member::count()
-{
-    return counter;
-}
+using namespace std;
 
 //Default constructor.
 Member::Member()
@@ -34,19 +13,23 @@ Member::Member()
     password = " ";
     gender = " ";
     age = 0;
-    counter++;
+    userID=++numOfUsers;
+    onlineUsers.push_back(numOfUsers);
+}
+//destructor member 
+Member::~Member()
+{
+   --numOfUsers;
+    onlineUsers.remove(userID);
 }
 
 //Parameterized constructor which initializes the string.
-Member::Member(string name, string password, string gender, int age,int userID)
+Member::Member(string name, string password, string gender,int age)
 {
     this->name = name;
     this->password = password;
     this->gender = gender;
     this->age = age;
-    this->userID=userID;
-    counter++;
-    
 }
 
 //Setter method which sets the name of the user.
@@ -93,56 +76,67 @@ int Member::getAge()
 {
     return this->age;
 }
-void Member::setuserID(int userID)
-{
-    this->userID = userID;
-}
-int Member::getuserID()
-{
-    return this->userID;
-}
+
 //Getter method which gets the followers from the follower vector.
-int Member::numFollowers()
-{
-    return Followers.size() ;
+
+int Member::numFollowers(){
+
+    for(int i=0;i<Followers.size();i++)
+    {
+        list<int>::iterator it;
+        it= find(onlineUsers.begin(), onlineUsers.end(), Followers[i]);
+        if(it == onlineUsers.end())
+        {
+            Followers.erase(Followers.begin()+i);
+        }
+    }
+
+    return Followers.size();
+
 }
 //Setter method which adds the following to the following vector.îé ùàðé òå÷á àçøéå
-void Member::follow(Member &u)
+void Member::follow(Member& u)
 {
-       if(find(Followers.begin(),Followers.end(), u.userID) ==Followers.end() )
+       if(find(Following.begin(),Following.end(), u.userID) ==Following.end() )
        {
-       Followers.push_back(u.userID);
-        u.Following.push_back(userID);
+       Following.push_back(u.userID);
+        u.Followers.push_back(userID);
      }
 }
-void Member::unfollow(Member &u)
+void Member::unfollow(Member& u)
 {
     for(int i = 0; i<Following.size(); i++)
     {
-        if(Following[i] == &u)
+        if(Following[i] == u.userID)
         {
             Following.erase(Following.begin() +i );
-            break;
+            
         }
     }
           for(int i = 0; i<Followers.size(); i++)
-          {
-        if(Followers[i] == &u)
+        {
+        if(u.Followers[i] == userID)
         {
             Followers.erase(Followers.begin() +i );
-            break;
+            
         }
     }
-    
 
 }
 //Getter method which gets the following from the following vector.
 int Member::numFollowing()
 {
+       for(int i=0;i<Following.size();i++){
+        list<int>::iterator it;
+        it= find(onlineUsers.begin(), onlineUsers.end(), Following[i]);
+        if(it == onlineUsers.end()){
+            Following.erase(Following.begin()+i);
+        }
+    }
     return Following.size();
+  
 }
-//destructor member 
-Member::~Member()
+int Member::count()
 {
-    counter--;
+    return numOfUsers;
 }
