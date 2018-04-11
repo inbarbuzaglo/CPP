@@ -38,12 +38,13 @@ Member::Member()
 }
 
 //Parameterized constructor which initializes the string.
-Member::Member(string name, string password, string gender, int age)
+Member::Member(string name, string password, string gender, int age,int userID)
 {
     this->name = name;
     this->password = password;
     this->gender = gender;
     this->age = age;
+    this->userID=userID;
     counter++;
     
 }
@@ -92,6 +93,11 @@ int Member::getAge()
 {
     return this->age;
 }
+void Member::setuserID(int userID)
+{
+    this->userID = userID;
+}
+
 //Getter method which gets the followers from the follower vector.
 int Member::numFollowers()
 {
