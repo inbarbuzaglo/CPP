@@ -12,16 +12,14 @@ static int numID=0;
 class Member{
 
 private:   
-
-    int userID;
     string name;
     string password = " ";
     string gender = " ";
     int age = 0;
     int id;
-    
+    int numOfFollowers;
+    int numOfFollowing;
     vector<Member*>Following; //follow
-    
     vector<Member*>Followers; //òå÷áéí àçøé
  
 public:
@@ -64,9 +62,12 @@ public:
     void follow(Member& u);
 
     void unfollow(Member& u);
-
+    
+    void unfollowers(Member& u);
+    
     void newFollowers(Member &m);
- 
+    
+    int numFollowes();
      //Getter method which gets the number of Following
     int numFollowing();
 
