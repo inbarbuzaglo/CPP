@@ -99,7 +99,7 @@ void Member::follow(Member& u)
      
     }
     Following.push_back(&u);
-     m.newFollowers(*this);
+     u.newFollowers(*this);
    }
 }
 void Member::unfollow(Member& u)
