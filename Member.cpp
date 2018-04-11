@@ -97,7 +97,7 @@ int Member::numFollowers()
 {
     return Followers.size() ;
 }
-//Setter method which adds the following to the following vector.îé ùàðé òå÷á àçøéå
+//Setter method which adds the following to the following vector.Ã®Ã© Ã¹Ã Ã°Ã© Ã²Ã¥Ã·Ã¡ Ã Ã§Ã¸Ã©Ã¥
 void Member::follow(Member &u)
 {
     for(int i =0 ; i<Following.size();i++)
