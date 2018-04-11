@@ -21,7 +21,7 @@ private:
     string password = " ";
     string gender = " ";
     int age = 0;
-    int userId;
+    int userID;
     
     vector<Member*>Following; //follow
     
@@ -64,6 +64,10 @@ public:
     //Getter method which gets the age of the user.
     int getAge();
     
+    void setuserID(int userID);
+
+    int userID();
+
     //Getter method which gets the number of Followers
     int numFollowers(); 
    
