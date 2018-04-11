@@ -6,7 +6,7 @@
 #include<vector>
 #include <queue>
 #include<iomanip>
-
+#include <algorithm>
 
 using namespace std;
 
