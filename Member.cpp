@@ -9,18 +9,18 @@ using namespace std;
 //Default constructor.
 Member::Member()
 {
+    counter++;
     name = " ";
     password = " ";
     gender = " ";
     age = 0;
-    userID=++numOfUsers;
-    onlineUsers.push_back(numOfUsers);
+    id=++userID;
+  
 }
 //destructor member 
 Member::~Member()
 {
-   --numOfUsers;
-    onlineUsers.remove(userID);
+   count--;
 }
 
 //Parameterized constructor which initializes the string.
@@ -77,23 +77,6 @@ int Member::getAge()
     return this->age;
 }
 
-//Getter method which gets the followers from the follower vector.
-
-int Member::numFollowers(){
-
-    for(int i=0;i<Followers.size();i++)
-    {
-        list<int>::iterator it;
-        it= find(onlineUsers.begin(), onlineUsers.end(), Followers[i]);
-        if(it == onlineUsers.end())
-        {
-            Followers.erase(Followers.begin()+i);
-        }
-    }
-
-    return Followers.size();
-
-}
 //Setter method which adds the following to the following vector.îé ùàðé òå÷á àçøéå
 void Member::follow(Member& u)
 {
@@ -124,19 +107,21 @@ void Member::unfollow(Member& u)
 
 }
 //Getter method which gets the following from the following vector.
+int Member::numFollowers()
+{
+    return Followers.size();
+}
 int Member::numFollowing()
 {
-       for(int i=0;i<Following.size();i++){
-        list<int>::iterator it;
-        it= find(onlineUsers.begin(), onlineUsers.end(), Following[i]);
-        if(it == onlineUsers.end()){
-            Following.erase(Following.begin()+i);
-        }
-    }
     return Following.size();
-  
+}
+
+void Member::newFollowers(Member &m)
+{
+    numFollowers++;
+    Followers.push_back(&m);
 }
 int Member::count()
 {
-    return numOfUsers;
+    return return counter;
 }
