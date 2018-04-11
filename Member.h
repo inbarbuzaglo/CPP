@@ -21,7 +21,7 @@ private:
     string password = " ";
     string gender = " ";
     int age = 0;
-    int id;
+    int userId;
     
     vector<Member*>Following; //follow
     
@@ -38,7 +38,7 @@ public:
 
     
     //Parameterized constructor which initializes the string.
- Member(string name, string password, string gender, int age);
+ Member(string name, string password, string gender, int age,int userID);
     
     //Setter method which sets the name of the user.
     void setName(string name);
