@@ -25,7 +25,7 @@ Member::~Member()
            unfollow(*Following[i]);//unfollow from my list
         }
     for(int i=0; i<numOfFollowers; i++){
-           Following[i]->unfollow(*this);//unfollow from their list
+           Followers[i]->unfollow(*this);//unfollow from their list
         }   
    counter--;
 }
