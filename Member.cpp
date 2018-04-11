@@ -13,12 +13,12 @@ Member::Member()
     password = " ";
     gender = " ";
     age = 0;
-    id=++numID;
-    numOfFollowers=0;
-    numOfFollowing=0;
+    id=++numID;//id of the user
+    numOfFollowers=0;//a counter for the amout of followers of mine - who follows after me
+    numOfFollowing=0;//a counter for the amout of following -who i follow after
   
 }
-//destructor member 
+//destructor member ,loops in order to delete from the vector
 Member::~Member()
 {
       for(int i=0; i<numOfFollowing; i++){
@@ -30,7 +30,7 @@ Member::~Member()
    counter--;
 }
 
-//Parameterized constructor which initializes the string.
+//Parameterized constructor which initializes .
 Member::Member(string name, string password, string gender,int age)
 {
     this->name = name;
@@ -45,7 +45,7 @@ void Member::setName(string name)
     this->name = name;
 }
 
-//Getter method which gets the password of the user.
+//Getter method which gets the name of the user.
 string Member::getName()
 {
     return this->name;
@@ -84,15 +84,15 @@ int Member::getAge()
     return this->age;
 }
 
-//Setter method which adds the following to the following vector.îé ùàðé òå÷á àçøéå
+//Setter method which adds the following to the following vector. the same for followers 
 void Member::follow(Member& u)
 {
-   if(this->id!=u.id)
+   if(this->id!=u.id)//if the object isn't in my vector already
    {
     for(int i =0 ; i<numOfFollowing;i++)
     {
      
-       if ((Following[i]->id)==(u.id))
+       if ((Following[i]->id)==(u.id))//if the object is in my vector
        {
         return;
          }
@@ -103,11 +103,12 @@ void Member::follow(Member& u)
      u.newFollowers(*this);
    }
 }
+//to unfollow somone
 void Member::unfollow(Member& u)
 {
     for(int i = 0; i<numOfFollowing; i++)
     {
-        if(Following[i]->id == u.id)
+        if(Following[i]->id == u.id)//if the object is in my vec
         {
             Following.erase(Following.begin() +i );
             numOfFollowing--;   
@@ -117,6 +118,7 @@ void Member::unfollow(Member& u)
     }
 
 }
+//to take myself of his vec of followers
     void Member::unFollowers(Member& u)
 {
     for(int i=0; i<numOfFollowers; i++){
@@ -137,11 +139,11 @@ int Member::numFollowing()
 {
     return numOfFollowing;
 }
-
-void Member::newFollowers(Member &m)
+//helper to add myself to someone's vec
+void Member::newFollowers(Member& u)
 {
     numOfFollowers++;
-    Followers.push_back(&m);
+    Followers.push_back(&u);
 }
 int Member::count()
 {
