@@ -97,7 +97,10 @@ void Member::setuserID(int userID)
 {
     this->userID = userID;
 }
-
+int Member::getuserID()
+{
+    return this->userID;
+}
 //Getter method which gets the followers from the follower vector.
 int Member::numFollowers()
 {
@@ -106,10 +109,10 @@ int Member::numFollowers()
 //Setter method which adds the following to the following vector.îé ùàðé òå÷á àçøéå
 void Member::follow(Member &u)
 {
-       if(find(Followers.begin(),Followers.end(), u.userId) ==Followers.end() )
+       if(find(Followers.begin(),Followers.end(), u.userID) ==Followers.end() )
        {
-       Followers.push_back(u.userId);
-        u.Following.push_back(userId);
+       Followers.push_back(u.userID);
+        u.Following.push_back(userID);
      }
 }
 void Member::unfollow(Member &u)
