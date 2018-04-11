@@ -120,7 +120,7 @@ void Member::unfollow(Member& u)
     void Member::unFollowers(Member& u)
 {
     for(int i=0; i<numOfFollowers; i++){
-        if(Following[i]->id == u.id)
+        if(Followers[i]->id == u.id)
         {
             Followers.erase(Followers.begin() + i);
             numOfFollowers--;
