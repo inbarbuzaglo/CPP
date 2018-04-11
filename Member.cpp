@@ -99,6 +99,7 @@ void Member::follow(Member& u)
      
     }
     Following.push_back(&u);
+     numOfFollowing++;
      u.newFollowers(*this);
    }
 }
@@ -109,7 +110,7 @@ void Member::unfollow(Member& u)
         if(Following[i]->id == u.id)
         {
             Following.erase(Following.begin() +i );
-            
+            numOfFollowing--;   
         }
     }
           for(int i = 0; i<u.Followers.size(); i++)
@@ -117,7 +118,7 @@ void Member::unfollow(Member& u)
         if(u.Followers[i]->id == id)
         {
             u.Followers.erase(u.Followers.begin() +i );
-            
+            numOfFollowers--; 
         }
     }
 
