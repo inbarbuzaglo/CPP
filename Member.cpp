@@ -113,11 +113,11 @@ void Member::unfollow(Member& u)
             
         }
     }
-          for(int i = 0; i<Followers.size(); i++)
-        {
+          for(int i = 0; i<u.Followers.size(); i++)
+          {
         if(u.Followers[i] == userID)
         {
-            Followers.erase(Followers.begin() +i );
+            u.Followers.erase(u.Followers.begin() +i );
             
         }
     }
