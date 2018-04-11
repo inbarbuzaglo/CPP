@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <algorithm>
 #include "Member.h"
@@ -14,7 +13,7 @@ Member::Member()
     password = " ";
     gender = " ";
     age = 0;
-    id=++userID;
+    id=++numID;
     numOfFollowers=0;
     numOfFollowing=0;
   
@@ -22,7 +21,13 @@ Member::Member()
 //destructor member 
 Member::~Member()
 {
-   count--;
+      for(int i=0; i<Following.size(); i++){
+           unfollow(*Following[i]);//unfollow from my list
+        }
+    for(int i=0; i<Followers.size(); i++){
+           Following[i]->unfollow(*this);//unfollow from their list
+        }   
+   counter--;
 }
 
 //Parameterized constructor which initializes the string.
@@ -82,7 +87,7 @@ int Member::getAge()
 //Setter method which adds the following to the following vector.îé ùàðé òå÷á àçøéå
 void Member::follow(Member& u)
 {
-{
+
     for(int i =0 ; i<Following.size();i++)
     {
        if ((Following[i]->id)==(u.id))
@@ -106,7 +111,7 @@ void Member::unfollow(Member& u)
     }
           for(int i = 0; i<u.Followers.size(); i++)
           {
-        if(u.Followers[i].id == id)
+        if(u.Followers[i]->id == id)
         {
             u.Followers.erase(u.Followers.begin() +i );
             
@@ -114,7 +119,7 @@ void Member::unfollow(Member& u)
     }
 
 }
-    void Member::unFollowers(Member &u)
+    void Member::unFollowers(Member& u)
 {
     for(int i=0; i<Following.size(); i++){
         if(Following[i]->id == u.id)
@@ -137,7 +142,7 @@ int Member::numFollowing()
 
 void Member::newFollowers(Member &m)
 {
-    numFollowers++;
+    numOfFollowers++;
     Followers.push_back(&m);
 }
 int Member::count()
