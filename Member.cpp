@@ -21,10 +21,10 @@ Member::Member()
 //destructor member 
 Member::~Member()
 {
-      for(int i=0; i<Following.size(); i++){
+      for(int i=0; i<numOfFollowing; i++){
            unfollow(*Following[i]);//unfollow from my list
         }
-    for(int i=0; i<Followers.size(); i++){
+    for(int i=0; i<numOfFollowers; i++){
            Following[i]->unfollow(*this);//unfollow from their list
         }   
    counter--;
@@ -89,7 +89,7 @@ void Member::follow(Member& u)
 {
    if(this->id!=u.id)
    {
-    for(int i =0 ; i<Following.size();i++)
+    for(int i =0 ; i<numOfFollowing;i++)
     {
      
        if ((Following[i]->id)==(u.id))
@@ -105,30 +105,24 @@ void Member::follow(Member& u)
 }
 void Member::unfollow(Member& u)
 {
-    for(int i = 0; i<Following.size(); i++)
+    for(int i = 0; i<numOfFollowing; i++)
     {
         if(Following[i]->id == u.id)
         {
             Following.erase(Following.begin() +i );
             numOfFollowing--;   
-        }
-    }
-          for(int i = 0; i<u.Followers.size(); i++)
-          {
-        if(u.Followers[i]->id == id)
-        {
-            u.Followers.erase(u.Followers.begin() +i );
-            numOfFollowers--; 
+            u.unFollowers(*this);
+            return;
         }
     }
 
 }
     void Member::unFollowers(Member& u)
 {
-    for(int i=0; i<Following.size(); i++){
+    for(int i=0; i<numOfFollowers; i++){
         if(Following[i]->id == u.id)
         {
-            Following.erase(Following.begin() + i);
+            Followers.erase(Followers.begin() + i);
             numOfFollowers--;
             return;
         }
@@ -137,11 +131,11 @@ void Member::unfollow(Member& u)
 //Getter method which gets the following from the following vector.
 int Member::numFollowers()
 {
-    return Followers.size();
+    return numOfFollowers;
 }
 int Member::numFollowing()
 {
-    return Following.size();
+    return numOfFollowing;
 }
 
 void Member::newFollowers(Member &m)
