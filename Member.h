@@ -1,14 +1,13 @@
-#include <cstdlib>
-#include <cstdio>
-#include <string>
+
 #include <iostream>
-#include<fstream>
 #include<vector>
-#include <algorithm>
+#include <list>
 
 using namespace std;
 
- 
+static int numOfUsers;
+
+ static list<int> onlineUsers;
 
 //The Users class has two vectors of type Users* and a string variable which are used by the Graph class to create the directed Graph.
 class Member{
@@ -17,29 +16,26 @@ class Member{
 
 
 private:   
-  
+
+    int userID;
     string name;
     string password = " ";
     string gender = " ";
     int age = 0;
-    int userID;
     
-    vector<Member*>Following; //follow
     
-    vector<Member*>Followers; //òå÷áéí àçøé
+    vector<int>Following; //follow
+    
+    vector<int>Followers; //òå÷áéí àçøé
     
 public:
+ //Default constructor.
+  Member(); 
+   //Destructor
+  ~Member();
 
-    static int counter;
-
-    static int count();
-
-    //Default constructor.
-    Member();
-
-    
     //Parameterized constructor which initializes the string.
- Member(string name, string password, string gender, int age,int userID);
+ Member(string name, string password, string gender, int age);
     
     //Setter method which sets the name of the user.
     void setName(string name);
@@ -65,24 +61,17 @@ public:
     //Getter method which gets the age of the user.
     int getAge();
     
-    void setuserID(int userID);
-
-    int userID();
-
     //Getter method which gets the number of Followers
     int numFollowers(); 
    
     //Setter method which adds the following to the following vector.
-    void follow(Member &u);
+    void follow(Member& u);
 
-    void unfollow(Member &u);
+    void unfollow(Member& u);
 
      //Getter method which gets the number of Following
     int numFollowing();
 
-    
-    //Destructor
-    ~Member();
-   
-   
+
+    static int count();
 };
