@@ -100,10 +100,10 @@ int Member::numFollowers()
 //Setter method which adds the following to the following vector.îé ùàðé òå÷á àçøéå
 void Member::follow(Member &u)
 {
-       if(find(Followers.begin(),Followers.end(), u.name) ==Followers.end() )
+       if(find(Followers.begin(),Followers.end(), u.userId) ==Followers.end() )
        {
-       Followers.push_back(u.name);
-        u.Following.push_back(name);
+       Followers.push_back(u.userId);
+        u.Following.push_back(userId);
      }
 }
 void Member::unfollow(Member &u)
