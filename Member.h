@@ -1,19 +1,15 @@
 
 #include <iostream>
 #include<vector>
-#include <list>
+
 
 using namespace std;
 
-static int numOfUsers;
-
- static list<int> onlineUsers;
+static int counter=0;
+static int numID=0;
 
 //The Users class has two vectors of type Users* and a string variable which are used by the Graph class to create the directed Graph.
 class Member{
-
-    //return the number of activate members
-
 
 private:   
 
@@ -23,11 +19,10 @@ private:
     string gender = " ";
     int age = 0;
     
+    vector<Member*>Following; //follow
     
-    vector<int>Following; //follow
-    
-    vector<int>Followers; //òå÷áéí àçøé
-    
+    vector<Member*>Followers; //òå÷áéí àçøé
+ 
 public:
  //Default constructor.
   Member(); 
@@ -63,15 +58,16 @@ public:
     
     //Getter method which gets the number of Followers
     int numFollowers(); 
-   
+ 
     //Setter method which adds the following to the following vector.
     void follow(Member& u);
 
     void unfollow(Member& u);
 
+    void newFollowers(Member &m);
+ 
      //Getter method which gets the number of Following
     int numFollowing();
-
 
     static int count();
 };
