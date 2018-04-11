@@ -25,7 +25,7 @@ private:
     
     vector<Member*>Following; //follow
     
-    vector<Member*>Followers; //òå÷áéí àçøé
+    vector<Member*>Followers; //Ã²Ã¥Ã·Ã¡Ã©Ã­ Ã Ã§Ã¸Ã©
     
 public:
 
