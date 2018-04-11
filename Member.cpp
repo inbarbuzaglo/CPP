@@ -87,9 +87,11 @@ int Member::getAge()
 //Setter method which adds the following to the following vector.îé ùàðé òå÷á àçøéå
 void Member::follow(Member& u)
 {
-
+   if(this->id!=u.id)
+   {
     for(int i =0 ; i<Following.size();i++)
     {
+     
        if ((Following[i]->id)==(u.id))
        {
         return;
@@ -97,7 +99,8 @@ void Member::follow(Member& u)
      
     }
     Following.push_back(&u);
-        u.Followers.push_back(this);
+     m.newFollowers(*this);
+   }
 }
 void Member::unfollow(Member& u)
 {
