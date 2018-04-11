@@ -24,12 +24,12 @@ private:
  
 public:
  //Default constructor.
-  Member(); 
+     Member(); 
    //Destructor
-  ~Member();
+     ~Member();
 
     //Parameterized constructor which initializes the string.
- Member(string name, string password, string gender, int age);
+    Member(string name, string password, string gender, int age);
     
     //Setter method which sets the name of the user.
     void setName(string name);
@@ -63,7 +63,7 @@ public:
 
     void unfollow(Member& u);
     
-    void unfollowers(Member& u);
+    void unFollowers(Member& u);
     
     void newFollowers(Member &m);
     
