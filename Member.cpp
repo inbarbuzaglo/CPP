@@ -15,6 +15,8 @@ Member::Member()
     gender = " ";
     age = 0;
     id=++userID;
+    numOfFollowers=0;
+    numOfFollowing=0;
   
 }
 //destructor member 
@@ -80,17 +82,23 @@ int Member::getAge()
 //Setter method which adds the following to the following vector.îé ùàðé òå÷á àçøéå
 void Member::follow(Member& u)
 {
-       if(find(Following.begin(),Following.end(), u.userID) ==Following.end() )
+{
+    for(int i =0 ; i<Following.size();i++)
+    {
+       if ((Following[i]->id)==(u.id))
        {
-       Following.push_back(u.userID);
-        u.Followers.push_back(userID);
-     }
+        return;
+         }
+     
+    }
+    Following.push_back(&u);
+        u.Followers.push_back(this);
 }
 void Member::unfollow(Member& u)
 {
     for(int i = 0; i<Following.size(); i++)
     {
-        if(Following[i] == u.userID)
+        if(Following[i]->id == u.id)
         {
             Following.erase(Following.begin() +i );
             
@@ -98,13 +106,24 @@ void Member::unfollow(Member& u)
     }
           for(int i = 0; i<u.Followers.size(); i++)
           {
-        if(u.Followers[i] == userID)
+        if(u.Followers[i].id == id)
         {
             u.Followers.erase(u.Followers.begin() +i );
             
         }
     }
 
+}
+    void Member::unFollowers(Member &u)
+{
+    for(int i=0; i<Following.size(); i++){
+        if(Following[i]->id == u.id)
+        {
+            Following.erase(Following.begin() + i);
+            numOfFollowers--;
+            return;
+        }
+    }  
 }
 //Getter method which gets the following from the following vector.
 int Member::numFollowers()
@@ -123,5 +142,5 @@ void Member::newFollowers(Member &m)
 }
 int Member::count()
 {
-    return return counter;
+    return counter;
 }
