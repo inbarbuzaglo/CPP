@@ -21,7 +21,7 @@ private:
     string password = " ";
     string gender = " ";
     int age = 0;
-    
+    int id;
     
     vector<Member*>Following; //follow
     
